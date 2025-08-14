@@ -1,112 +1,44 @@
-<!DOCTYPE html>
+# Lite2D Engine (C++/SDL2)
 
-<html>
+Minimal 2D engine with modular subsystems: rendering, input (action-based), basic physics (AABB vs static), camera follow, and sprite animations. Includes a small demo scene.
 
-<head>
-    <title>Login Page</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            background-color: rgb(230, 236, 240);
-            font-family: sans-serif;
-        }
+## Requirements
+- CMake 3.16+
+- C++17 compiler
+- SDL2, SDL2_image (dev packages)
 
-        .loginbox {
-            width: 350px;
-            height: 420px;
-            background: black;
-            color: white;
-            top: 50%;
-            left: 50%;
-            position: absolute;
-            transform: translate(-50%, -50%);
-            box-sizing: border-box;
-            padding: 70px 30px
-        }
+On Debian/Ubuntu:
+```bash
+sudo apt-get update -y && sudo apt-get install -y cmake g++ libsdl2-dev libsdl2-image-dev
+```
 
-        .avatar {
-            width: 150px;
-            height: 150px;
-            border-radius: 25%;
-            position: absolute;
-            top: -75px;
-            left: 29%
-        }
+## Build
+```bash
+cmake -S . -B build
+cmake --build build -j
+```
 
-        h1 {
-            margin: 0;
-            padding: 0 0 20 px;
-            text-align: center;
-            font-size: 22px;
-        }
+## Run
+```bash
+./build/Lite2DEngine
+```
+If running in a headless container/CI, you can use SDL's dummy video driver:
+```bash
+SDL_VIDEODRIVER=dummy ./build/Lite2DEngine
+```
 
-        .loginbox p {
-            margin: 0;
-            padding: 0;
-            font-weight: bold;
-        }
+## Controls
+- A/D: Move left/right
+- Space: Jump
+- Esc: Quit
 
-        .loginbox input {
-            width: 100%;
-            margin-bottom: 20px;
-        }
+## Project Structure
+- `include/Engine/` headers for subsystems
+- `src/` implementations and `main.cpp`
+- `assets/` placeholder for future textures, backgrounds, and levels
 
-        .loginbox input[type="text"],
-        input[type="password"] {
-            border: none;
-            border-bottom: 1px solid white;
-            background: transparent;
-            outline: none;
-            height: 40px;
-            color: white;
-            font-size: 18px;
-        }
-
-        .loginbox input[type="submit"] {
-            border: none;
-            outline: none;
-            height: 40px;
-            background: red;
-            color: white;
-            font-size: 18px;
-            border-radius: 20px;
-        }
-
-        .loginbox input[type="submit"]:hover {
-            cursor: pointer;
-            background: #ffc107;
-            color: #000;
-        }
-
-        .loginbox a {
-            text-decoration: none;
-            font-size: 12px;
-            line-height: 20px;
-            color: darkgrey;
-        }
-
-        .loginbox a:hover {
-            color: #ffc107;
-        }
-    </style>
-
-    <body>
-        <div class="loginbox">
-            <img src="loginavatar.png" class="avatar">
-            <h1>Login Here</h1>
-            <form>
-                <p>Username</p>
-                <input type="text" name= "" placeholder="Enter Username" required>
-                <p>Password</p>
-                <input type="Password" name="" placeholder="Enter Password" required>
-                <input type="submit" name="" value="Login"><br>
-                <a href="#">Forget your Password?</a><br>
-                <a href="JS Exercise File\Registration page\Registration.html">Don't have account?</a>
-
-            </form>
-        </div>
-    </body>
-</head>
-
-</html>
+## Notes
+- Fixed time-step at 60 FPS, accumulator-based loop
+- Simple AABB vs static bodies with positional resolution
+- Camera follows the first entity (player)
+- Example animation uses a generated 4-frame sprite sheet
