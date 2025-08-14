@@ -18,6 +18,9 @@ bool Engine::initialize(const EngineConfig& cfg) {
 		SDL_Log("SDL_Init failed: %s", SDL_GetError());
 		return false;
 	}
+	// Performance-related hints
+	SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "0");
+	SDL_SetHint(SDL_HINT_RENDER_BATCHING, "1");
 	int imgFlags = IMG_INIT_PNG | IMG_INIT_JPG;
 	if ((IMG_Init(imgFlags) & imgFlags) == 0) {
 		SDL_Log("IMG_Init failed: %s", IMG_GetError());
@@ -156,6 +159,7 @@ void Engine::run() {
 			accumulator -= fixedDt;
 		}
 
+		renderer->beginFrame();
 		renderer->clear(SDL_Color{40, 44, 52, 255});
 		scene->render();
 		renderer->present();

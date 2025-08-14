@@ -13,7 +13,15 @@ add_compile_options(
 	$<$<CXX_COMPILER_ID:GNU,Clang>:-Wall>
 	$<$<CXX_COMPILER_ID:GNU,Clang>:-Wextra>
 	$<$<CXX_COMPILER_ID:GNU,Clang>:-Wpedantic>
+	$<$<AND:$<CONFIG:Release>,$<CXX_COMPILER_ID:GNU,Clang>>:-O3>
 )
+
+# Enable LTO/IPO in Release if supported
+include(CheckIPOSupported)
+check_ipo_supported(RESULT ipo_supported OUTPUT ipo_msg)
+if(ipo_supported)
+	set(CMAKE_INTERPROCEDURAL_OPTIMIZATION_RELEASE TRUE)
+endif()
 
 find_package(SDL2 REQUIRED)
 find_package(SDL2_image REQUIRED)

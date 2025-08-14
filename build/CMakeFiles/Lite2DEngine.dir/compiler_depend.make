@@ -602,6 +602,7 @@ CMakeFiles/Lite2DEngine.dir/src/Engine.cpp.o: /workspace/src/Engine.cpp \
   /usr/lib/llvm-20/lib/clang/20/include/xsaveoptintrin.h \
   /usr/lib/llvm-20/lib/clang/20/include/xsavesintrin.h \
   /usr/lib/llvm-20/lib/clang/20/include/xtestintrin.h \
+  /workspace/include/Engine/Animation.hpp \
   /workspace/include/Engine/Engine.hpp \
   /workspace/include/Engine/Input.hpp \
   /workspace/include/Engine/Physics.hpp \
@@ -2301,6 +2302,7 @@ CMakeFiles/Lite2DEngine.dir/src/Scene.cpp.o: /workspace/src/Scene.cpp \
   /usr/lib/llvm-20/lib/clang/20/include/xsaveoptintrin.h \
   /usr/lib/llvm-20/lib/clang/20/include/xsavesintrin.h \
   /usr/lib/llvm-20/lib/clang/20/include/xtestintrin.h \
+  /workspace/include/Engine/Animation.hpp \
   /workspace/include/Engine/Engine.hpp \
   /workspace/include/Engine/Input.hpp \
   /workspace/include/Engine/Physics.hpp \

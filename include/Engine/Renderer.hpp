@@ -45,6 +45,7 @@ public:
 	void clear(const SDL_Color& color);
 	void present();
 
+	void beginFrame();
 	void drawTexture(SDL_Texture* tex, const Rect& src, const Rect& dst, bool applyCamera = true, double rotationDeg = 0.0);
 	void drawRect(const Rect& rect, const SDL_Color& color, bool filled = true, bool applyCamera = true);
 
@@ -53,6 +54,12 @@ public:
 private:
 	SDL_Renderer* sdlRenderer{nullptr};
 	Camera camera{};
+	float camPosX{0.0f};
+	float camPosY{0.0f};
+	float camZoom{1.0f};
+	int outputW{0};
+	int outputH{0};
+	bool isOnScreen(const SDL_FRect& r) const;
 };
 
 } // namespace lite2d
